@@ -6,12 +6,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserEntity {
 
-    @SerializedName("Username")
+    @SerializedName("username")
     @Expose
     private String username;
-    @SerializedName("Password")
+    @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("email")
+    @Expose
+    private String email = "sosijopudima@hui.com";
 
     /**
      * No args constructor for use in serialization
@@ -47,4 +50,11 @@ public class UserEntity {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

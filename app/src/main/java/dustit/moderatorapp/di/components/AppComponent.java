@@ -7,6 +7,7 @@ import dustit.moderatorapp.di.modules.AppModule;
 import dustit.moderatorapp.di.modules.ServerModule;
 import dustit.moderatorapp.mvp.datamanager.DataManager;
 import dustit.moderatorapp.mvp.model.repositories.ServerRepository;
+import dustit.moderatorapp.mvp.presenter.activities.ChangeCategoriesActivityPresenter;
 import dustit.moderatorapp.mvp.presenter.activities.ChooserActivityPresenter;
 import dustit.moderatorapp.mvp.presenter.activities.DecideActivityPresenter;
 import dustit.moderatorapp.mvp.presenter.activities.LoginActivityPresenter;
@@ -33,4 +34,5 @@ public interface AppComponent {
 
     void inject(SettingsActivityPresenter settingsActivityPresenter);
 
+    void inject(ChangeCategoriesActivityPresenter changeCategoriesActivityPresenter);
 }

@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseCode {
 
-    @SerializedName("ResponseCode")
+    @SerializedName("message")
     @Expose
     private int code;
 

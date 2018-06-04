@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class MemIdEntity {
 
-    @SerializedName("Id")
+    @SerializedName("imageid")
     @Expose
     private int id;
 

@@ -62,18 +62,15 @@ public class DecideCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<De
         notifyDataSetChanged();
     }
 
-    public CategoriesIdEntity getCheckedCategories() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(" ");
+    public String[] getCheckedCategories() {
+        List<String> list = new ArrayList<>();
         for (int i = 0; i < categoryList.size(); i++) {
             if (categoryList.get(i).isChecked()) {
-                Category category = categoryList.get(i);
-                builder.append(category.getId());
-                builder.append(" ");
-                Log.d("MY", "Builder: " + builder.toString());
+                list.add(categoryList.get(i).getId());
             }
         }
-        return new CategoriesIdEntity(builder.toString());
+        String[] arr = new String[list.size()];
+        return list.toArray(arr);
     }
 
     public void resetChecked() {

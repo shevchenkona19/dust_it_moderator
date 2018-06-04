@@ -62,6 +62,10 @@ public class DecideActivity extends AppCompatActivity implements IDecideActivity
         btnDiscard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (currentMem == null) {
+                    onErrorInDiscardingMem();
+                    return;
+                }
                 presenter.discardMem(String.valueOf(currentMem.getId()));
                 pbLoading.setVisibility(View.VISIBLE);
             }
@@ -70,8 +74,12 @@ public class DecideActivity extends AppCompatActivity implements IDecideActivity
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CategoriesIdEntity entity = adapter.getCheckedCategories();
-                if (entity.getIds().length() < 1) {
+                final CategoriesIdEntity entity = new CategoriesIdEntity(adapter.getCheckedCategories());
+                if (currentMem == null) {
+                    onErrorPostingMem();
+                    return;
+                }
+                if (entity.getIds().length < 1) {
                     Toast.makeText(DecideActivity.this, "Выберите хотя-бы одну категорию!", Toast.LENGTH_SHORT).show();
                 } else {
                     pbLoading.setVisibility(View.VISIBLE);
@@ -130,8 +138,7 @@ public class DecideActivity extends AppCompatActivity implements IDecideActivity
         sdvMemImage.setVisibility(View.VISIBLE);
         pbLoading.setVisibility(View.GONE);
         currentMem = memIdEntity;
-        sdvMemImage.setImageURI(IConstants.BASE_URL + "/moderator/imgs?token="
-                + presenter.getToken() + "&id=" + memIdEntity.getId());
+        sdvMemImage.setImageURI(IConstants.BASE_URL + "/feed/imgs?id=" + memIdEntity.getId());
         adapter.resetChecked();
     }
 
@@ -159,6 +166,8 @@ public class DecideActivity extends AppCompatActivity implements IDecideActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 0, 0, "Настройки");
+        menu.add(0, 1, 1, "Изменение категорий");
+        menu.add(0, 2, 2, "Повторить все");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -167,6 +176,12 @@ public class DecideActivity extends AppCompatActivity implements IDecideActivity
         if (item.getItemId() == 0) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == 1) {
+            Intent intent = new Intent(this, ChangeCategoriesActivity.class);
+            startActivity(intent);
+        } else if(item.getItemId() == 2) {
+            presenter.getCategories();
+            presenter.getNewMem();
         }
         return super.onOptionsItemSelected(item);
     }

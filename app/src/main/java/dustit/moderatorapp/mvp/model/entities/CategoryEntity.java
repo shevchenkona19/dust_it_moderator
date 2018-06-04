@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CategoryEntity {
 
-    @SerializedName("Categories")
+    @SerializedName("categories")
     @Expose
     private List<Category> categories = null;
 

@@ -30,7 +30,7 @@ public class SharedPreferencesRepository {
         setLogged(true);
         sharedPreferences
                 .edit()
-                .putString(IConstants.TOKEN_KEY, token)
+                .putString(IConstants.TOKEN_KEY, "JWT " + token)
                 .apply();
     }
 

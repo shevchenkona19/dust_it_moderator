@@ -6,12 +6,14 @@ import dustit.moderatorapp.App;
 import dustit.moderatorapp.mvp.model.api.ServerAPI;
 import dustit.moderatorapp.mvp.model.entities.CategoriesIdEntity;
 import dustit.moderatorapp.mvp.model.entities.CategoryEntity;
+import dustit.moderatorapp.mvp.model.entities.CreateCategoryEntity;
 import dustit.moderatorapp.mvp.model.entities.LoginUserEntity;
 import dustit.moderatorapp.mvp.model.entities.MemIdEntity;
 import dustit.moderatorapp.mvp.model.entities.ResponseCode;
 import dustit.moderatorapp.mvp.model.entities.TokenEntity;
 import dustit.moderatorapp.mvp.model.entities.UserEntity;
 import rx.Observable;
+import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -66,6 +68,18 @@ public class ServerRepository {
 
     public Observable<ResponseCode> logout(String token) {
         return serverAPI.logout(token)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Observable<ResponseCode> createCategory(String token, CreateCategoryEntity createCategoryEntity) {
+        return serverAPI.createCategory(token, createCategoryEntity)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Observable<ResponseCode> deleteCategory(String token, String id) {
+        return serverAPI.deleteCategory(token, id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }

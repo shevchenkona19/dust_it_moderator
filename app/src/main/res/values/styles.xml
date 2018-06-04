@@ -13,4 +13,9 @@
         <item name="android:background">@drawable/splash_theme</item>
     </style>
 
+    <style name="RedButton" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@android:color/holo_red_light</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
 </resources>

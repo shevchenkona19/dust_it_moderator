@@ -9,19 +9,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class CategoriesIdEntity {
 
-    @SerializedName("IDs")
+    @SerializedName("Ids")
     @Expose
-    private String ids;
+    private String[] ids;
 
-    public CategoriesIdEntity(String ids) {
+    public CategoriesIdEntity(String[] ids) {
         this.ids = ids;
     }
 
-    public String getIds() {
+    public String[] getIds() {
         return ids;
     }
 
-    public void setIds(String ids) {
+    public void setIds(String[] ids) {
         this.ids = ids;
     }
 }

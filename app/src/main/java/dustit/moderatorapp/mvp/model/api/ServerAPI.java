@@ -2,12 +2,14 @@ package dustit.moderatorapp.mvp.model.api;
 
 import dustit.moderatorapp.mvp.model.entities.CategoriesIdEntity;
 import dustit.moderatorapp.mvp.model.entities.CategoryEntity;
+import dustit.moderatorapp.mvp.model.entities.CreateCategoryEntity;
 import dustit.moderatorapp.mvp.model.entities.LoginUserEntity;
 import dustit.moderatorapp.mvp.model.entities.MemIdEntity;
 import dustit.moderatorapp.mvp.model.entities.ResponseCode;
 import dustit.moderatorapp.mvp.model.entities.TokenEntity;
 import dustit.moderatorapp.mvp.model.entities.UserEntity;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -23,26 +25,34 @@ import rx.Observable;
 
 public interface ServerAPI {
 
-    @POST("/moderator/register/")
+    String auth = "Authorization";
+
+    @POST("/account/register/")
     Observable<TokenEntity> registerUser(@Body UserEntity userEntity);
 
-    @POST("/moderator/login/")
+    @POST("/account/login/")
     Observable<TokenEntity> loginUser(@Body LoginUserEntity loginUserEntity);
 
-    @GET("/moderator/getCategories")
-    Observable<CategoryEntity> getCategories(@Query("token") String token);
+    @GET("/config/categories")
+    Observable<CategoryEntity> getCategories(@Header(auth) String token);
 
-    @POST("/moderator/postMem")
-    Observable<ResponseCode> postMem(@Query("token") String token, @Query("id") String id, @Body CategoriesIdEntity categoriesIdEntity);
+    @POST("/moderator/mem")
+    Observable<ResponseCode> postMem(@Header(auth) String token, @Query("id") String id, @Body CategoriesIdEntity categoriesIdEntity);
 
-    @GET("/moderator/getNewMem")
-    Observable<MemIdEntity> getNewMem(@Query("token") String token);
+    @GET("/moderator/newMem")
+    Observable<MemIdEntity> getNewMem(@Header(auth) String token);
 
     @POST("/moderator/discardMem")
-    Observable<ResponseCode> discardMem(@Query("token") String token, @Query("id") String id);
+    Observable<ResponseCode> discardMem(@Header(auth) String token, @Query("id") String id);
 
     @POST("/moderator/logout")
-    Observable<ResponseCode> logout(@Query("token") String token);
+    Observable<ResponseCode> logout(@Header(auth) String token);
+
+    @POST("/moderator/createCategory")
+    Observable<ResponseCode> createCategory(@Header(auth) String token, @Body CreateCategoryEntity createCategoryEntity);
+
+    @DELETE("moderator/category")
+    Observable<ResponseCode> deleteCategory(@Header(auth) String token, @Query("id") String id);
 
 
 }

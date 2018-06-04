@@ -6,6 +6,7 @@ import dustit.moderatorapp.App;
 import dustit.moderatorapp.mvp.model.entities.CategoriesIdEntity;
 import dustit.moderatorapp.mvp.model.entities.Category;
 import dustit.moderatorapp.mvp.model.entities.CategoryEntity;
+import dustit.moderatorapp.mvp.model.entities.CreateCategoryEntity;
 import dustit.moderatorapp.mvp.model.entities.LoginUserEntity;
 import dustit.moderatorapp.mvp.model.entities.MemIdEntity;
 import dustit.moderatorapp.mvp.model.entities.ResponseCode;
@@ -80,5 +81,13 @@ public class DataManager {
 
     public String getToken() {
         return sharedPreferencesRepository.getCurrentToken().getToken();
+    }
+
+    public Observable<ResponseCode> createCategory(String name) {
+        return serverRepository.createCategory(getToken(), new CreateCategoryEntity(name));
+    }
+
+    public Observable<ResponseCode> deleteCategory(String id) {
+        return serverRepository.deleteCategory(getToken(), id);
     }
 }
