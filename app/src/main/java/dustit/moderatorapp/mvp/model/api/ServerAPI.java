@@ -27,7 +27,7 @@ public interface ServerAPI {
 
     String auth = "Authorization";
 
-    @POST("/account/register/")
+    @POST("/account/registerModer/")
     Observable<TokenEntity> registerUser(@Body UserEntity userEntity);
 
     @POST("/account/login/")

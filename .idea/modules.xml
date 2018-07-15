@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dust_it_moderator.iml" filepath="$PROJECT_DIR$/dust_it_moderator.iml" />
       <module fileurl="file://$PROJECT_DIR$/memspace_moderator_app.iml" filepath="$PROJECT_DIR$/memspace_moderator_app.iml" />
     </modules>
   </component>

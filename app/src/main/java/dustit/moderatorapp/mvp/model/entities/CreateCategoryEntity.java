@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class CreateCategoryEntity {
 
-    @SerializedName("categoryname")
+    @SerializedName("categoryName")
     @Expose
     private String categoryName;
 

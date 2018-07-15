@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Никита on 01.11.2017.
  */
 
-public class CategoriesIdEntity {
+public class    CategoriesIdEntity {
 
     @SerializedName("Ids")
     @Expose

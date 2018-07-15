@@ -34,5 +34,6 @@ public class App extends Application {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(instance))
                 .build();
+        Fresco.getImagePipeline().clearCaches();
     }
 }
